@@ -77,12 +77,16 @@ public class ActivityMostImages extends AppCompatActivity {
             @Override
             public void onDownloadedCompleted(String path, Bitmap bitmap) {
                 /*********
-                ** When downloaded image
+                ** When downloaded image and be in thread main
                  * he download photo by photo, if error in downloaded photo he try again
                  */
-                auxPhoto.modifySizeOfBitmap(bitmap,150);
                 adapter.addListItem(bitmap);
                 bitmap = null;
+            }
+            @Override
+            public void onDownloadedCompletedInBackground(String s, Bitmap bitmap) {
+                // When downloaded image and be in other thread
+                auxPhoto.modifySizeOfBitmap(bitmap,150);
             }
         });
     }

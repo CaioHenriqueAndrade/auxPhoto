@@ -36,7 +36,7 @@ public class MainActivity extends AppCompatActivity implements AuxiliarPhoto.OnD
 
             //300 is scale of size of bitmap...
             //more size, more memory
-            bt = auxiliarPhoto.modifyScaleOfFile(auxiliarPhoto.getFile("directory","imageName"),300);
+            bt = auxiliarPhoto.modifyScaleOfFile(auxiliarPhoto.getFile("directory", "imageName"), 300);
             //your can do in background this action in other Thread if your preference
 
 
@@ -54,7 +54,6 @@ public class MainActivity extends AppCompatActivity implements AuxiliarPhoto.OnD
     public void onDownloadCompleted(Bitmap bitmap, String nameImage) {
         if (bitmap != null) {
             // 0 is quality, if 0 is desconsidered (max is 100) 1 - 100
-            auxiliarPhoto.saveToInternalStorage("directory", bitmap, "imageName", 0);
             imageview.setImageBitmap(bitmap);
             bitmap = null;
         } else {
@@ -63,8 +62,17 @@ public class MainActivity extends AppCompatActivity implements AuxiliarPhoto.OnD
     }
 
     @Override
+    public void onDownloadCompletedInBackGround(Bitmap bitmap, String s) {
+        if (bitmap.getWidth() > 600)
+            auxiliarPhoto.modifySizeOfBitmap(bitmap, 600);
+
+
+        auxiliarPhoto.saveToInternalStorage("directory", bitmap, "imageName", 0);
+    }
+
+    @Override
     public void onClick(View view) {
-        Intent it = new Intent(this,ActivityMostImages.class);
+        Intent it = new Intent(this, ActivityMostImages.class);
         startActivity(it);
     }
 }
