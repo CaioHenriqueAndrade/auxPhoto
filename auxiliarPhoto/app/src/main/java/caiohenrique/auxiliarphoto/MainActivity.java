@@ -63,11 +63,13 @@ public class MainActivity extends AppCompatActivity implements AuxiliarPhoto.OnD
 
     @Override
     public void onDownloadCompletedInBackGround(Bitmap bitmap, String s) {
-        if (bitmap.getWidth() > 600)
-            auxiliarPhoto.modifySizeOfBitmap(bitmap, 600);
+        if (bitmap != null)
+            if (bitmap.getWidth() > 600)
+                auxiliarPhoto.modifySizeOfBitmap(bitmap, 600);
+                auxiliarPhoto.saveToInternalStorage("directory", bitmap, "imageName", 0);
+            }
 
 
-        auxiliarPhoto.saveToInternalStorage("directory", bitmap, "imageName", 0);
     }
 
     @Override
