@@ -26,7 +26,8 @@ public class MainActivity extends AppCompatActivity implements AuxiliarPhoto.OnD
         imageview = (ImageView) findViewById(R.id.imageview);
 
         auxiliarPhoto = new AuxiliarPhoto(this);
-        Bitmap bt = auxiliarPhoto.loadImageFromStorageOrDownload("dir", "image", "https://avatars1.githubusercontent.com/u/6407041?v=4", this);
+
+        Bitmap bt = auxiliarPhoto.loadImageFromStorageOrDownload("dir", "imageName", "https://avatars1.githubusercontent.com/u/6407041?v=4", this);
 
         if (bt == null) {
             //if not exists photo in phone
